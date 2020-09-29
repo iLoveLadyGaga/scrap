@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% for obj in object_list %}
+        <div class="card my-2">
+          <div class="card-header">
+            <p><a href="{{ obj.url }}">{{ obj.title }}</a></p>
+          </div>
+            <h4>{{ obj.company }}</h4>
+          <div class="card-body">
+            <p class="card-text">{{ obj.description }}</p>
+              <p>{{ obj.city.name }} | {{ obj.language.name }} |
+                  <small>{{ obj.timestamp|date:"d-m-Y" }}</small></p>
+          </div>
+        </div>
+        {% empty %}
+            <h3 class="col-md-6 mx-auto" >Ничего не найдено</h3>
+    {% endfor %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form method="GET" action="">
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Искать</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
